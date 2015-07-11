@@ -1,4 +1,4 @@
-# Proverb
+# Proverb API
 
 [![Build Status](https://ci.appveyor.com/api/projects/status/github/johnnyreilly/proverb-api?retina=true)](https://ci.appveyor.com/project/JohnReilly/proverb-api)
 
