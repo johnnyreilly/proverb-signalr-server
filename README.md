@@ -2,8 +2,6 @@
 
 [![Build Status](https://ci.appveyor.com/api/projects/status/github/johnnyreilly/proverb-api?retina=true)](https://ci.appveyor.com/project/JohnReilly/proverb-api)
 
-[![TypeScript definitions on DefinitelyTyped](http://definitelytyped.org/badges/standard-flat.svg)](http://definitelytyped.org)
-
 Proverb is a simple app that stores the wise sayings of sages.  This is a collection of variations upon a the proverb theme.  Different versions of "Proverb" built using different technologies and techniques for kicks and giggles.  It's a playground for me.  
 
 This repository is using the following technologies:
