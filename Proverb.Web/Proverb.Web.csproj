@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -21,7 +20,6 @@
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
-    <TypeScriptToolsVersion>1.4</TypeScriptToolsVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -84,19 +82,27 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Http, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.dll</HintPath>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -146,70 +152,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\about\about.html" />
-    <Content Include="app\admin\admin.html" />
-    <Content Include="app\common\bootstrap\bootstrap.dialog.html" />
-    <Content Include="app\dashboard\dashboard.html" />
-    <Content Include="app\directives\waiter.html" />
-    <Content Include="app\index.html" />
-    <Content Include="app\layout\shell.html" />
-    <Content Include="app\layout\sidebar.html" />
-    <Content Include="app\layout\topnav.html" />
-    <Content Include="app\directives\widgetHeader.html" />
-    <Content Include="app\sayings\sayingEdit.html" />
-    <Content Include="app\sayings\sayingEdit.js">
-      <DependentUpon>sayingEdit.ts</DependentUpon>
-    </Content>
-    <Content Include="app\sayings\sayings.html" />
-    <Content Include="app\sayings\sayings.js">
-      <DependentUpon>sayings.ts</DependentUpon>
-    </Content>
-    <Content Include="app\sages\sageEdit.html" />
-    <Content Include="app\sages\sageDetail.html" />
-    <Content Include="app\sages\sages.html" />
-    <Content Include="app\services\repository.sage.js">
-      <DependentUpon>repository.sage.ts</DependentUpon>
-    </Content>
-    <Content Include="app\services\repositories.js">
-      <DependentUpon>repositories.ts</DependentUpon>
-    </Content>
-    <Content Include="styles\customtheme.css.map">
-      <DependentUpon>customtheme.css</DependentUpon>
-    </Content>
-    <Content Include="app\services\repositories.js.map">
-      <DependentUpon>repositories.ts</DependentUpon>
-    </Content>
-    <Content Include="app\services\repository.sage.js.map">
-      <DependentUpon>repository.sage.ts</DependentUpon>
-    </Content>
-    <Content Include="app\sayings\sayingEdit.js.map">
-      <DependentUpon>sayingEdit.ts</DependentUpon>
-    </Content>
-    <Content Include="bower.json" />
-    <None Include="styles\customtheme.less" />
-    <Content Include="styles\customtheme.css">
-      <DependentUpon>customtheme.less</DependentUpon>
-    </Content>
-    <Content Include="images\icon.png" />
-    <Content Include="images\socrates-statue.jpg" />
-    <Content Include="styles\styles.css.map">
-      <DependentUpon>styles.css</DependentUpon>
-    </Content>
-    <Content Include="app\sayings\sayings.js.map">
-      <DependentUpon>sayings.ts</DependentUpon>
-    </Content>
-    <None Include="styles\styles.less" />
-    <Content Include="styles\styles.css">
-      <DependentUpon>styles.less</DependentUpon>
-    </Content>
-    <Content Include="styles\styles.min.css">
-      <DependentUpon>styles.css</DependentUpon>
-    </Content>
     <Content Include="Global.asax" />
-    <Content Include="gulpfile.config.js" />
-    <Content Include="gulpfile.js" />
-    <Content Include="package.json" />
-    <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -228,200 +171,6 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="app\about\about.ts" />
-    <Content Include="app\about\about.js">
-      <DependentUpon>about.ts</DependentUpon>
-    </Content>
-    <Content Include="app\about\about.js.map">
-      <DependentUpon>about.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\admin\admin.ts" />
-    <Content Include="app\admin\admin.js">
-      <DependentUpon>admin.ts</DependentUpon>
-    </Content>
-    <Content Include="app\admin\admin.js.map">
-      <DependentUpon>admin.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\app.ts" />
-    <Content Include="app\app.js">
-      <DependentUpon>app.ts</DependentUpon>
-    </Content>
-    <Content Include="app\app.js.map">
-      <DependentUpon>app.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\common\bootstrap\bootstrap.dialog.ts" />
-    <Content Include="app\common\bootstrap\bootstrap.dialog.js">
-      <DependentUpon>bootstrap.dialog.ts</DependentUpon>
-    </Content>
-    <Content Include="app\common\bootstrap\bootstrap.dialog.js.map">
-      <DependentUpon>bootstrap.dialog.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\common\common.ts" />
-    <Content Include="app\common\common.js">
-      <DependentUpon>common.ts</DependentUpon>
-    </Content>
-    <Content Include="app\common\common.js.map">
-      <DependentUpon>common.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\common\logger.ts" />
-    <Content Include="app\common\logger.js">
-      <DependentUpon>logger.ts</DependentUpon>
-    </Content>
-    <Content Include="app\common\logger.js.map">
-      <DependentUpon>logger.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\common\spinner.ts" />
-    <Content Include="app\common\spinner.js">
-      <DependentUpon>spinner.ts</DependentUpon>
-    </Content>
-    <Content Include="app\common\spinner.js.map">
-      <DependentUpon>spinner.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\config.route.ts" />
-    <Content Include="app\config.route.js">
-      <DependentUpon>config.route.ts</DependentUpon>
-    </Content>
-    <Content Include="app\config.route.js.map">
-      <DependentUpon>config.route.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\dashboard\dashboard.ts" />
-    <Content Include="app\dashboard\dashboard.js">
-      <DependentUpon>dashboard.ts</DependentUpon>
-    </Content>
-    <Content Include="app\dashboard\dashboard.js.map">
-      <DependentUpon>dashboard.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\directives\imgPerson.ts" />
-    <Content Include="app\directives\imgPerson.js">
-      <DependentUpon>imgPerson.ts</DependentUpon>
-    </Content>
-    <Content Include="app\directives\imgPerson.js.map">
-      <DependentUpon>imgPerson.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\directives\serverError.ts" />
-    <Content Include="app\directives\serverError.js">
-      <DependentUpon>serverError.ts</DependentUpon>
-    </Content>
-    <Content Include="app\directives\serverError.js.map">
-      <DependentUpon>serverError.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\directives\sidebar.ts" />
-    <Content Include="app\directives\sidebar.js">
-      <DependentUpon>sidebar.ts</DependentUpon>
-    </Content>
-    <Content Include="app\directives\sidebar.js.map">
-      <DependentUpon>sidebar.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\directives\spinner.ts" />
-    <Content Include="app\directives\spinner.js">
-      <DependentUpon>spinner.ts</DependentUpon>
-    </Content>
-    <Content Include="app\directives\spinner.js.map">
-      <DependentUpon>spinner.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\directives\waiter.ts" />
-    <Content Include="app\directives\waiter.js">
-      <DependentUpon>waiter.ts</DependentUpon>
-    </Content>
-    <Content Include="app\directives\waiter.js.map">
-      <DependentUpon>waiter.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\directives\widgetClose.ts" />
-    <Content Include="app\directives\widgetClose.js">
-      <DependentUpon>widgetClose.ts</DependentUpon>
-    </Content>
-    <Content Include="app\directives\widgetClose.js.map">
-      <DependentUpon>widgetClose.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\directives\widgetHeader.ts" />
-    <Content Include="app\directives\widgetHeader.js">
-      <DependentUpon>widgetHeader.ts</DependentUpon>
-    </Content>
-    <Content Include="app\directives\widgetHeader.js.map">
-      <DependentUpon>widgetHeader.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\directives\widgetMinimize.ts" />
-    <Content Include="app\directives\widgetMinimize.js">
-      <DependentUpon>widgetMinimize.ts</DependentUpon>
-    </Content>
-    <Content Include="app\directives\widgetMinimize.js.map">
-      <DependentUpon>widgetMinimize.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\layout\shell.ts" />
-    <Content Include="app\layout\shell.js">
-      <DependentUpon>shell.ts</DependentUpon>
-    </Content>
-    <Content Include="app\layout\shell.js.map">
-      <DependentUpon>shell.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\layout\sidebar.ts" />
-    <Content Include="app\layout\sidebar.js">
-      <DependentUpon>sidebar.ts</DependentUpon>
-    </Content>
-    <Content Include="app\layout\sidebar.js.map">
-      <DependentUpon>sidebar.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\layout\topnav.ts" />
-    <Content Include="app\layout\topnav.js">
-      <DependentUpon>topnav.ts</DependentUpon>
-    </Content>
-    <Content Include="app\layout\topnav.js.map">
-      <DependentUpon>topnav.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\sayings\sayingEdit.ts" />
-    <TypeScriptCompile Include="app\sayings\sayings.ts" />
-    <TypeScriptCompile Include="app\sages\sageEdit.ts" />
-    <Content Include="app\sages\sageEdit.js">
-      <DependentUpon>sageEdit.ts</DependentUpon>
-    </Content>
-    <Content Include="app\sages\sageEdit.js.map">
-      <DependentUpon>sageEdit.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\sages\sageDetail.ts" />
-    <Content Include="app\sages\sageDetail.js">
-      <DependentUpon>sageDetail.ts</DependentUpon>
-    </Content>
-    <Content Include="app\sages\sageDetail.js.map">
-      <DependentUpon>sageDetail.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\sages\sages.ts" />
-    <Content Include="app\sages\sages.js">
-      <DependentUpon>sages.ts</DependentUpon>
-    </Content>
-    <Content Include="app\sages\sages.js.map">
-      <DependentUpon>sages.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\services\repository.sage.ts" />
-    <TypeScriptCompile Include="app\services\repositories.ts" />
-    <TypeScriptCompile Include="app\services\datacontext.ts" />
-    <Content Include="app\services\datacontext.js">
-      <DependentUpon>datacontext.ts</DependentUpon>
-    </Content>
-    <Content Include="app\services\datacontext.js.map">
-      <DependentUpon>datacontext.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="app\services\repository.saying.ts" />
-    <Content Include="app\services\repository.saying.js">
-      <DependentUpon>repository.saying.ts</DependentUpon>
-    </Content>
-    <Content Include="app\services\repository.saying.js.map">
-      <DependentUpon>repository.saying.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="Scripts\typings\angular-ui-bootstrap\angular-ui-bootstrap.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-cookies.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-mocks.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-resource.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-route.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular-sanitize.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\angularjs\angular.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\moment\moment.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\spin\spin.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\toastr\toastr.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\underscore\underscore.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Proverb.Data.Common\Proverb.Data.Common.csproj">
@@ -462,47 +211,8 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <TypeScriptNoImplicitAny>True</TypeScriptNoImplicitAny>
-  </PropertyGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
-  <PropertyGroup>
-    <CompileDependsOn>
-      $(CompileDependsOn);
-      GulpBuild;
-    </CompileDependsOn>
-	<CleanDependsOn>
-      $(CleanDependsOn);
-      GulpClean
-    </CleanDependsOn>
-    <CopyAllFilesToSingleFolderForPackageDependsOn>
-      CollectGulpOutput;
-      $(CopyAllFilesToSingleFolderForPackageDependsOn);
-    </CopyAllFilesToSingleFolderForPackageDependsOn>
-    <CopyAllFilesToSingleFolderForMsdeployDependsOn>
-      CollectGulpOutput;
-      $(CopyAllFilesToSingleFolderForPackageDependsOn);
-    </CopyAllFilesToSingleFolderForMsdeployDependsOn>
-  </PropertyGroup>
-  <Target Name="GulpBuild" DependsOnTargets="CompileTypeScript">
-    <Exec Command="npm install" />
-    <Exec Command="bower install" />
-    <Exec Command="gulp --mode $(ConfigurationName)" />
-  </Target>
-  <Target Name="GulpClean">
-    <Exec Command="gulp clean" />
-  </Target>
-  <Target Name="CollectGulpOutput">
-    <ItemGroup>
-      <_CustomFiles Include="build\**\*" />
-      <FilesForPackagingFromProject Include="%(_CustomFiles.Identity)">
-        <DestinationRelativePath>build\%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
-      </FilesForPackagingFromProject>
-    </ItemGroup>
-    <Message Text="CollectGulpOutput list: %(_CustomFiles.Identity)" />
-  </Target>
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
     <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
   </Target>
@@ -524,12 +234,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Target Name="AfterBuild">
-    <ItemGroup>
-      <!-- what ever is in the build folder should be included in the project -->
-      <Content Include="build\**\*.*" />
-    </ItemGroup>
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

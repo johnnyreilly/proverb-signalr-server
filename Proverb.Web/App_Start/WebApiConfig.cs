@@ -1,9 +1,8 @@
-﻿using Newtonsoft.Json.Serialization;
+﻿using System.Configuration;
+using Newtonsoft.Json.Serialization;
 using Proverb.Web.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.ExceptionHandling;
 
 namespace Proverb.Web
@@ -12,14 +11,17 @@ namespace Proverb.Web
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
+            // http://www.asp.net/web-api/overview/security/enabling-cross-origin-requests-in-web-api#enable-cors
+            var crossOriginDomains = ConfigurationManager.AppSettings["Access-Control-Allow-Origin"];
+            var cors = new EnableCorsAttribute(crossOriginDomains, "*", "*");
+            config.EnableCors(cors);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
 
