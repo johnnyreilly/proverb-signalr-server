@@ -75,7 +75,7 @@ namespace Proverb.Web.UnitTests.Controllers
             Assert.AreEqual(_appName, startUpData.AppName);
             Assert.AreEqual("http://localhost/", startUpData.AppRoot);
             Assert.AreEqual(_inDebug, startUpData.InDebug);
-            Assert.AreEqual("http://localhost/api/", startUpData.RemoteServiceRoot);
+            Assert.AreEqual("http://localhost/", startUpData.RemoteServiceRoot);
             Assert.AreEqual(_version, startUpData.Version);
         }
     }
