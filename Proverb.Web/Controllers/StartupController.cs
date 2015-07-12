@@ -44,7 +44,7 @@ namespace Proverb.Web.Controllers
 
 
             var appRoot = Url.Content("~/");
-            var remoteServiceRoot = Url.Content("~/api/");
+            var remoteServiceRoot = Url.Content("~/");
 
             var startUpData = new StartUpData(
                 _appConfigHelper.AppName,
