@@ -28,8 +28,7 @@ artifacts:
 
 deploy:
 - provider: WebDeploy
-  server:
-    secure: NvzatElBACvT9rl9q93l4Ou1LdB7WvF4cAV61SyergZ20myLeUxsCfsUkgsGTcjC8Khw2jC0HrTdJsGrfwx2YCI90yYgC7xqDnGF4TLpnc0=
+  server: https://proverbsignalr.scm.azurewebsites.net:443/msdeploy.axd?site=proverbsignalr
   website: proverbsignalr
   username:
     secure: oD4cIsHoIqRcFMmFj6OKMw==
