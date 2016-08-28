@@ -30,7 +30,7 @@ deploy:
 - provider: WebDeploy
   server:
     secure: NvzatElBACvT9rl9q93l4Ou1LdB7WvF4cAV61SyergZ20myLeUxsCfsUkgsGTcjC8Khw2jC0HrTdJsGrfwx2YCI90yYgC7xqDnGF4TLpnc0=
-  website: proverb
+  website: proverbsignalr
   username:
     secure: hF4z+9jP+et7duuTVWcVBw==
   password:

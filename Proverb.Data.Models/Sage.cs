@@ -8,5 +8,12 @@ namespace Proverb.Data.Models
         [Range(0, int.MaxValue, ErrorMessage = "Sagacity can only be positive my friend")]
         public int? Sagacity { get; set; }
         public ICollection<Saying> Sayings { get; set; }
-    }
+
+      public void UpdateWith(Sage updateWith)
+      {
+         base.UpdateWith(updateWith);
+
+         Sagacity = updateWith.Sagacity;
+      }
+   }
 }

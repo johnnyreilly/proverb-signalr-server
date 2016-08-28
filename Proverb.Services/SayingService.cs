@@ -18,14 +18,14 @@ namespace Proverb.Services
         private readonly ISayingCommand _sayingCommand;
         private readonly ISayingQuery _sayingQuery;
 
-        public async Task<int> CreateAsync(Saying saying)
+        public async Task<Result<int>> CreateAsync(Saying saying)
         {
             return await _sayingCommand.CreateAsync(saying);
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<Result> DeleteAsync(int id)
         {
-            await _sayingCommand.DeleteAsync(id);
+            return await _sayingCommand.DeleteAsync(id);
         }
 
         public async Task<ICollection<Saying>> GetAllAsync()
@@ -38,24 +38,23 @@ namespace Proverb.Services
             return await _sayingQuery.GetByIdAsync(id);
         }
 
-        public async Task UpdateAsync(Saying saying)
+        public async Task<Result> UpdateAsync(Saying saying)
         {
-            await _sayingCommand.UpdateAsync(saying);
+            return await _sayingCommand.UpdateAsync(saying);
         }
 
         public ValidationMessages Validate(Saying saying)
         {
-            var validations = new ValidationMessages();
+            var validations = new Dictionary<string, IEnumerable<string>>(ValidationHelpers.GetFieldValidations(saying).Errors);
 
-            // Probably will move this logic into sayingService - a Validate method
             if (saying.SageId == 0) 
             {
                 // eg "saying.sageId"
                 var fieldName = ValidationHelpers.GetFieldName(saying, x => x.SageId);
-                validations.AddError(fieldName, "Please select a sage.");
+                validations.Add(fieldName, new[] { "Please select a sage." });
             }
 
-            return validations;
+            return new ValidationMessages(validations);
         }
     }
 }

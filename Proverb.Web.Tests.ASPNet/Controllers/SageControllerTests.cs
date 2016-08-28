@@ -110,7 +110,7 @@ namespace Proverb.Web.Tests.ASPNet.Controllers
         {
             _sageServiceMock
                 .Setup(x => x.UpdateAsync(_sage))
-                .Returns(TaskOfNowt);
+                .Returns(Task.FromResult(Result.Ok()));
 
             IHttpActionResult result = await _controller.Post(_sage);
 

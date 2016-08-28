@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace Proverb.Data.Common
@@ -24,5 +27,39 @@ namespace Proverb.Data.Common
 
             return combined;
         }
-    }
+
+      /// <summary>
+      /// Take a model and revalidate it to extract FieldValidations
+      /// </summary>
+      /// <typeparam name="TModelToValidate"></typeparam>
+      /// <param name="modelToValidate"></param>
+      /// <param name="fieldNameMaker">a Func that generates a the error name (used so you can control this depending on your GUI)</param>
+      /// <param name="extraData"></param>
+      /// <returns></returns>
+      public static ValidationMessages GetFieldValidations<TModelToValidate>(TModelToValidate modelToValidate)
+      {
+         if (modelToValidate == null) throw new ArgumentNullException(nameof(modelToValidate));
+
+         var context = new ValidationContext(modelToValidate, serviceProvider: null, items: null);
+         var results = new List<ValidationResult>();
+
+         var isValid = Validator.TryValidateObject(modelToValidate, context, results, true);
+
+         if (isValid)
+            return ValidationMessages.None;
+
+         return new ValidationMessages(
+              (from validationResult in results
+               from errorProperty in validationResult.MemberNames
+               let fieldName = errorProperty
+               select new
+               {
+                  fieldName = fieldName,
+                  message = validationResult.ErrorMessage
+               })
+               .GroupBy(x => x.fieldName)
+               .ToDictionary(x => x.Key, x => x.Select(y => y.message))
+         );
+      }
+   }
 }

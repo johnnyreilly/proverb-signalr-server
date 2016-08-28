@@ -1,12 +1,13 @@
 ﻿using System.Threading.Tasks;
+using Proverb.Data.Common;
 using Proverb.Data.Models;
 
 namespace Proverb.Data.CommandQuery.Interfaces
 {
     public interface ISayingCommand
     {
-        Task<int> CreateAsync(Saying saying);
-        Task DeleteAsync(int id);
-        Task UpdateAsync(Saying saying);
+        Task<Result<int>> CreateAsync(Saying saying);
+        Task<Result> DeleteAsync(int id);
+        Task<Result> UpdateAsync(Saying saying);
     }
 }

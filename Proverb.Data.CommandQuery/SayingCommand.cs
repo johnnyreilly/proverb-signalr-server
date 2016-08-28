@@ -1,38 +1,67 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Threading.Tasks;
 using Proverb.Data.CommandQuery.Interfaces;
 using Proverb.Data.EntityFramework;
 using Proverb.Data.Models;
+using Proverb.Data.CommandQuery;
+using Proverb.Data.Common;
 
 namespace Proverb.Data.CommandQuery
 {
-    public class SayingCommand : BaseCommandQuery, ISayingCommand
-    {
-        public SayingCommand(ProverbContext dbContext) : base(dbContext) { }
+   public class SayingCommand : BaseCommandQuery, ISayingCommand
+   {
+      public SayingCommand(ProverbContext dbContext) : base(dbContext) { }
 
-        public async Task<int> CreateAsync(Saying saying)
-        {
+      public async Task<Result<int>> CreateAsync(Saying saying)
+      {
+         try
+         {
             DbContext.Sayings.Add(saying);
 
-            await DbContext.SaveChangesAsync();
+            var recordsSaved = await DbContext.SaveChangesAsync();
 
-            return saying.Id;
-        }
+            return Result.Ok(saying.Id);
+         }
+         catch (System.Exception exc)
+         {
+            return Result.Fail<int>(exc.Message);
+         }
+      }
 
-        public async Task DeleteAsync(int id)
-        {
-            var userToDelete = await DbContext.Sayings.FindAsync(id);
+      public async Task<Result> DeleteAsync(int id)
+      {
+         try
+         {
+            var entity = await DbContext.Sayings.FindAsync(id);
 
-            DbContext.Sayings.Remove(userToDelete);
+            DbContext.Sayings.Remove(entity);
 
-            await DbContext.SaveChangesAsync();
-        }
+            var recordsSaved = await DbContext.SaveChangesAsync();
 
-        public async Task UpdateAsync(Saying saying)
-        {
-            DbContext.Entry(saying).State = EntityState.Modified;
+            return Result.Ok();
+         }
+         catch (System.Exception exc)
+         {
+            return Result.Fail(exc.Message);
+         }
+      }
 
-            await DbContext.SaveChangesAsync();
-        }
-    }
+      public async Task<Result> UpdateAsync(Saying saying)
+      {
+         try
+         {
+            var dbSaying = await DbContext.Sayings.FindAsync(saying.Id);
+            dbSaying.UpdateWith(saying);
+
+            var recordsSaved = await DbContext.SaveChangesAsync();
+
+            return Result.Ok();
+         }
+         catch (System.Exception exc)
+         {
+            return Result.Fail(exc.Message);
+         }
+      }
+   }
 }

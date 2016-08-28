@@ -50,7 +50,7 @@ namespace Proverb.Web.Controllers
 
             // Perform service validations
             var serviceValidations = _sayingService.Validate(saying);
-            if (serviceValidations.HasErrors())
+            if (serviceValidations.HasErrors)
                 return this.BadRequest(serviceValidations.WithCamelCaseKeys());
 
             if (saying.Id > 0)

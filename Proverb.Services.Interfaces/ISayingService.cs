@@ -7,11 +7,11 @@ namespace Proverb.Services.Interfaces
 {
     public interface ISayingService
     {
-        Task<int> CreateAsync(Saying saying);
-        Task DeleteAsync(int id);
+        Task<Result<int>> CreateAsync(Saying saying);
+        Task<Result> DeleteAsync(int id);
         Task<ICollection<Saying>> GetAllAsync();
         Task<Saying> GetByIdAsync(int id);
-        Task UpdateAsync(Saying saying);
+        Task<Result> UpdateAsync(Saying saying);
         ValidationMessages Validate(Saying saying);
     }
 }

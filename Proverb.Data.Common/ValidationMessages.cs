@@ -1,42 +1,24 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Proverb.Data.Common
 {
-    public class ValidationMessages
-    {
-        private readonly Dictionary<string, IEnumerable<string>> _errors = new Dictionary<string, IEnumerable<string>>();
+   public class ValidationMessages
+   {
+      public static ValidationMessages None { get; } = new ValidationMessages();
+      private ValidationMessages()
+      {
+         Errors = new ReadOnlyDictionary<string, IEnumerable<string>>(new Dictionary<string, IEnumerable<string>>());
+      }
 
-        public ValidationMessages() 
-        {
-        }
+      public ValidationMessages(Dictionary<string, IEnumerable<string>> errors)
+      {
+         Errors = new ReadOnlyDictionary<string, IEnumerable<string>>(errors);
+      }
 
-        public ValidationMessages(Dictionary<string, IEnumerable<string>> errors)
-        {
-            _errors = errors;
-        }
+      public ReadOnlyDictionary<string, IEnumerable<string>> Errors { get; }
 
-        public void AddError(string field, string error)
-        {
-            Errors.Add(field, new[] { error });
-        }
-
-        public Dictionary<string, IEnumerable<string>> Errors 
-        { 
-            get 
-            { 
-                return _errors; 
-            } 
-        }
-
-        public string ErrorsAsString() 
-        { 
-            return string.Join(", ", Errors.Values); 
-        } 
-
-        public bool HasErrors() 
-        { 
-            return Errors.Keys.Any(); 
-        }
-    }
+      public bool HasErrors => Errors.Keys.Any();
+   }
 }

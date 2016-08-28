@@ -12,9 +12,9 @@ namespace Proverb.Web
         public static void Register(HttpConfiguration config)
         {
             // http://www.asp.net/web-api/overview/security/enabling-cross-origin-requests-in-web-api#enable-cors
-            var crossOriginDomains = ConfigurationManager.AppSettings["Access-Control-Allow-Origin"];
-            var cors = new EnableCorsAttribute(crossOriginDomains, "*", "*");
-            config.EnableCors(cors);
+            //var crossOriginDomains = ConfigurationManager.AppSettings["Access-Control-Allow-Origin"];
+            //var cors = new EnableCorsAttribute(crossOriginDomains, "*", "*");
+            //config.EnableCors(cors);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
