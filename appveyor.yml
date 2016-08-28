@@ -32,7 +32,7 @@ deploy:
     secure: NvzatElBACvT9rl9q93l4Ou1LdB7WvF4cAV61SyergZ20myLeUxsCfsUkgsGTcjC8Khw2jC0HrTdJsGrfwx2YCI90yYgC7xqDnGF4TLpnc0=
   website: proverbsignalr
   username:
-    secure: hF4z+9jP+et7duuTVWcVBw==
+    secure: oD4cIsHoIqRcFMmFj6OKMw==
   password:
     secure: dSc6RSokZrmvp0+a4tYUSJhsVUN+IasvnJ8LrQpQCoqUOIfYF5TbNK7E6MGGH1K7ao3UzrSUodQ18KJhhvsI9g==
   remove_files: true
