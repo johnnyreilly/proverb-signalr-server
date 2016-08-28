@@ -34,5 +34,5 @@ deploy:
   username:
     secure: oD4cIsHoIqRcFMmFj6OKMw==
   password:
-    secure: dSc6RSokZrmvp0+a4tYUSJhsVUN+IasvnJ8LrQpQCoqUOIfYF5TbNK7E6MGGH1K7ao3UzrSUodQ18KJhhvsI9g==
+    secure: Q3+FzAapY0SepeyiyDjJLHw5rbSAMOoYkvUlYVPJR0GM3WTBb6BZ0MAP3VurafJme4gCyExesUB/hmMFKNAsnA==
   remove_files: true
