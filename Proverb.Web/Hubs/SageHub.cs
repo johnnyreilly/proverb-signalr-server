@@ -44,22 +44,19 @@ namespace Proverb.Web.Hubs
          return _sageFeed.GetAll();
       }
 
-      public class GetQuery { public int Id { get; set; } }
-      public Task<Sage> Get(GetQuery query)
+      public Task<Sage> Get(int id)
       {
-         return _sageFeed.Get(query.Id);
+         return _sageFeed.Get(id);
       }
 
-      public class SaveCommand { public Sage Sage { get; set; } }
-      public async Task<SaveResult> Save(SaveCommand command)
+      public async Task<SaveResult> Save(Sage sage)
       {
-         return await _sageFeed.Save(command.Sage);
+         return await _sageFeed.Save(sage);
       }
 
-      public class RemoveCommand { public int Id { get; set; } }
-      public Task Remove(RemoveCommand command)
+      public Task Remove(int id)
       {
-         return _sageFeed.Remove(command.Id);
+         return _sageFeed.Remove(id);
       }
    }
 }
