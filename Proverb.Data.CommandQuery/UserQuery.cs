@@ -7,29 +7,36 @@ using Proverb.Data.Models;
 
 namespace Proverb.Data.CommandQuery
 {
-    public class UserQuery : BaseCommandQuery, IUserQuery
-    {
-        public UserQuery(ProverbContext dbContext) : base(dbContext) { }
-
-        public async Task<ICollection<User>> GetAllAsync()
-        {
-            var users = await DbContext.Users.ToListAsync();
+   public class UserQuery : IUserQuery
+   {
+      public async Task<ICollection<User>> GetAllAsync()
+      {
+         using (var context = new ProverbContext())
+         {
+            var users = await context.Users.ToListAsync();
 
             return users;
-        }
+         }
+      }
 
-        public async Task<User> GetByIdAsync(int id)
-        {
-            var user = await DbContext.Users.FindAsync(id);
-
-            return user;
-        }
-
-        public async Task<User> GetByUserNameAsync(string userName)
-        {
-            var user = await DbContext.Users.SingleOrDefaultAsync(x => x.UserName == userName);
+      public async Task<User> GetByIdAsync(int id)
+      {
+         using (var context = new ProverbContext())
+         {
+            var user = await context.Users.SingleAsync(x => x.Id == id);
 
             return user;
-        }
-    }
+         }
+      }
+
+      public async Task<User> GetByUserNameAsync(string userName)
+      {
+         using (var context = new ProverbContext())
+         {
+            var user = await context.Users.SingleOrDefaultAsync(x => x.UserName == userName);
+
+            return user;
+         }
+      }
+   }
 }

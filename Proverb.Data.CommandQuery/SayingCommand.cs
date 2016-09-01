@@ -9,19 +9,20 @@ using Proverb.Data.Common;
 
 namespace Proverb.Data.CommandQuery
 {
-   public class SayingCommand : BaseCommandQuery, ISayingCommand
+   public class SayingCommand : ISayingCommand
    {
-      public SayingCommand(ProverbContext dbContext) : base(dbContext) { }
-
       public async Task<Result<int>> CreateAsync(Saying saying)
       {
          try
          {
-            DbContext.Sayings.Add(saying);
+            using (var context = new ProverbContext())
+            {
+               context.Sayings.Add(saying);
 
-            var recordsSaved = await DbContext.SaveChangesAsync();
+               var recordsSaved = await context.SaveChangesAsync();
 
-            return Result.Ok(saying.Id);
+               return Result.Ok(saying.Id);
+            }
          }
          catch (System.Exception exc)
          {
@@ -33,13 +34,16 @@ namespace Proverb.Data.CommandQuery
       {
          try
          {
-            var entity = await DbContext.Sayings.FindAsync(id);
+            using (var context = new ProverbContext())
+            {
+               var entity = await context.Sayings.FindAsync(id);
 
-            DbContext.Sayings.Remove(entity);
+               context.Sayings.Remove(entity);
 
-            var recordsSaved = await DbContext.SaveChangesAsync();
+               var recordsSaved = await context.SaveChangesAsync();
 
-            return Result.Ok();
+               return Result.Ok();
+            }
          }
          catch (System.Exception exc)
          {
@@ -51,12 +55,15 @@ namespace Proverb.Data.CommandQuery
       {
          try
          {
-            var dbSaying = await DbContext.Sayings.FindAsync(saying.Id);
-            dbSaying.UpdateWith(saying);
+            using (var context = new ProverbContext())
+            {
+               var dbSaying = await context.Sayings.FindAsync(saying.Id);
+               dbSaying.UpdateWith(saying);
 
-            var recordsSaved = await DbContext.SaveChangesAsync();
+               var recordsSaved = await context.SaveChangesAsync();
 
-            return Result.Ok();
+               return Result.Ok();
+            }
          }
          catch (System.Exception exc)
          {

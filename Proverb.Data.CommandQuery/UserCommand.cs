@@ -6,33 +6,40 @@ using Proverb.Data.Models;
 
 namespace Proverb.Data.CommandQuery
 {
-    public class UserCommand : BaseCommandQuery, IUserCommand
-    {
-        public UserCommand(ProverbContext dbContext) : base(dbContext) { }
+   public class UserCommand : IUserCommand
+   {
+      public async Task<int> CreateAsync(User user)
+      {
+         using (var context = new ProverbContext())
+         {
+            context.Users.Add(user);
 
-        public async Task<int> CreateAsync(User user)
-        {
-            DbContext.Users.Add(user);
-
-            await DbContext.SaveChangesAsync();
+            await context.SaveChangesAsync();
 
             return user.Id;
-        }
+         }
+      }
 
-        public async Task DeleteAsync(int id) 
-        {
-            var userToDelete = await DbContext.Users.FindAsync(id);
-            
-            DbContext.Users.Remove(userToDelete);
+      public async Task DeleteAsync(int id)
+      {
+         using (var context = new ProverbContext())
+         {
+            var userToDelete = await context.Users.FindAsync(id);
 
-            await DbContext.SaveChangesAsync();
-        }
+            context.Users.Remove(userToDelete);
 
-        public async Task UpdateAsync(User user)
-        {
-            DbContext.Entry(user).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+         }
+      }
 
-            await DbContext.SaveChangesAsync();
-        }
-    }
+      public async Task UpdateAsync(User user)
+      {
+         using (var context = new ProverbContext())
+         {
+            context.Entry(user).State = EntityState.Modified;
+
+            await context.SaveChangesAsync();
+         }
+      }
+   }
 }

@@ -67,9 +67,6 @@ namespace Proverb.Web
       {
          var builder = new ContainerBuilder();
 
-         // DbContext
-         builder.RegisterType<ProverbContext>().As<ProverbContext>().InstancePerDependency();
-
          // Queries / Commands
          builder.RegisterAssemblyTypes(Assembly.Load("Proverb.Data.CommandQuery"))
              .Where(t => t.Name.EndsWith("Query") || t.Name.EndsWith("Command"))

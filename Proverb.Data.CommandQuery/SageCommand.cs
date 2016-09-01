@@ -1,5 +1,4 @@
-﻿using System.Data.Entity;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Proverb.Data.CommandQuery.Interfaces;
 using Proverb.Data.Common;
 using Proverb.Data.EntityFramework;
@@ -7,19 +6,20 @@ using Proverb.Data.Models;
 
 namespace Proverb.Data.CommandQuery
 {
-   public class SageCommand : BaseCommandQuery, ISageCommand
+   public class SageCommand : ISageCommand
    {
-      public SageCommand(ProverbContext dbContext) : base(dbContext) { }
-
       public async Task<Result<int>> CreateAsync(Sage sage)
       {
          try
          {
-            DbContext.Sages.Add(sage);
+            using (var context = new ProverbContext())
+            {
+               context.Sages.Add(sage);
 
-            var recordsSaved = await DbContext.SaveChangesAsync();
+               var recordsSaved = await context.SaveChangesAsync();
 
-            return Result.Ok(sage.Id);
+               return Result.Ok(sage.Id);
+            }
          }
          catch (System.Exception exc)
          {
@@ -31,13 +31,16 @@ namespace Proverb.Data.CommandQuery
       {
          try
          {
-            var entity = await DbContext.Sages.FindAsync(id);
+            using (var context = new ProverbContext())
+            {
+               var entity = await context.Sages.FindAsync(id);
 
-            DbContext.Sages.Remove(entity);
+               context.Sages.Remove(entity);
 
-            var recordsSaved = await DbContext.SaveChangesAsync();
+               var recordsSaved = await context.SaveChangesAsync();
 
-            return Result.Ok();
+               return Result.Ok();
+            }
          }
          catch (System.Exception exc)
          {
@@ -49,12 +52,15 @@ namespace Proverb.Data.CommandQuery
       {
          try
          {
-            var dbSaying = await DbContext.Sages.FindAsync(sage.Id);
-            dbSaying.UpdateWith(sage);
+            using (var context = new ProverbContext())
+            {
+               var dbSaying = await context.Sages.FindAsync(sage.Id);
+               dbSaying.UpdateWith(sage);
 
-            var recordsSaved = await DbContext.SaveChangesAsync();
+               var recordsSaved = await context.SaveChangesAsync();
 
-            return Result.Ok();
+               return Result.Ok();
+            }
          }
          catch (System.Exception exc)
          {

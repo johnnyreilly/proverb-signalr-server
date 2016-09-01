@@ -60,14 +60,14 @@ namespace Proverb.Web.Hubs
          return await HandleSaveResult(createResult.Value, createResult);
       }
 
-      private async Task<SaveResult> HandleSaveResult(int sayingId, Result result)
+      private async Task<SaveResult> HandleSaveResult(int sageId, Result result)
       {
          if (result.IsSuccess)
          {
-            var newSaying = await _sageService.GetByIdAsync(sayingId);
-            _sages.AddOrUpdate(sayingId, newSaying, (key, oldSaying) => newSaying);
+            var newSaying = await _sageService.GetByIdAsync(sageId);
+            _sages.AddOrUpdate(sageId, newSaying, (key, oldSaying) => newSaying);
 
-            return SaveResult.Success(sayingId);
+            return SaveResult.Success(sageId);
          }
 
          return SaveResult.Fail(result.Error);

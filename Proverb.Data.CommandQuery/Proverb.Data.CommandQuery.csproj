@@ -47,7 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseCommandQuery.cs" />
     <Compile Include="SayingCommand.cs" />
     <Compile Include="SayingQuery.cs" />
     <Compile Include="SageCommand.cs" />

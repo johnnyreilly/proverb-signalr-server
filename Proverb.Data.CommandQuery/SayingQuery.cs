@@ -8,29 +8,36 @@ using Proverb.Data.Models;
 
 namespace Proverb.Data.CommandQuery
 {
-    public class SayingQuery : BaseCommandQuery, ISayingQuery
+    public class SayingQuery : ISayingQuery
     {
-        public SayingQuery(ProverbContext dbContext) : base(dbContext) { }
-
         public async Task<ICollection<Saying>> GetAllAsync()
         {
-            var sayings = await DbContext.Sayings.ToListAsync();
+           using (var context = new ProverbContext())
+           {
+              var sayings = await context.Sayings.ToListAsync();
 
-            return sayings;
+              return sayings;
+           }
         }
 
         public async Task<Saying> GetByIdAsync(int id)
         {
-            var sayings = await DbContext.Sayings.FindAsync(id);
+           using (var context = new ProverbContext())
+           {
+              var saying = await context.Sayings.SingleAsync(x => x.Id == id);
 
-            return sayings;
+              return saying;
+           }
         }
 
         public async Task<ICollection<Saying>> GetBySageIdAsync(int sageId)
         {
-            var sayings = await DbContext.Sayings.Where(x => x.SageId == sageId).ToListAsync();
+           using (var context = new ProverbContext())
+           {
+              var sayings = await context.Sayings.Where(x => x.SageId == sageId).ToListAsync();
 
-            return sayings;
+              return sayings;
+           }
         }
     }
 }
